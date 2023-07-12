@@ -1,5 +1,8 @@
 require_relative "directories.rb"
-require_relative "Data.rb"
+require_relative "Flage.rb"
+require_relative "Flagc.rb"
+require_relative "Flaga.rb"
+require_relative "Flagcc.rb"
 
 class Index
   def start
@@ -17,10 +20,30 @@ class Index
       if flag == "-cc"
         raise Exception, "Invalid entry for month" if ARGV[1].split("/")[1].to_i > 12 || ARGV[1].split("/")[1].to_i < 1
       end
-      dir = Flage.new(year, city)
+      
 
       case flag
       when "-e"
+        dir = Flage.new(year, city)
+        dir.get_data
+      
+      when "-c"
+        month = year.split("/")[1]
+        year = year.split("/")[0]
+        
+        dir = Flagc.new(year,city,month)
+        dir.get_data
+      when "-a"
+        month = year.split("/")[1]
+        year = year.split("/")[0]
+        
+        dir = Flaga.new(year,city,month)
+        dir.get_data
+      when "-cc"
+        month = year.split("/")[1]
+        year = year.split("/")[0]
+        
+        dir = Flagcc.new(year,city,month)
         dir.get_data
       end
       

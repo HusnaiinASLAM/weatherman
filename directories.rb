@@ -1,6 +1,4 @@
 require "date"
-
-
 class Directories
   def initialize(year, city)
     @year = year
