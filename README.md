@@ -7,7 +7,7 @@ Weatherman is a command-line tool that provides weather data analysis for a give
 1. Clone the repository:
 
    ```
-   git clone https://github.com/your_username/weatherman.git
+   git clone https://github.com/HusnaiinASLAM/weatherman.git
    ```
 
 2. Navigate to the project directory:
