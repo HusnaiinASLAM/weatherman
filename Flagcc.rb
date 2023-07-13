@@ -1,37 +1,37 @@
 require_relative "directories.rb"
-
 class Flagcc < Directories
-    def initialize(year, city,mon)
-        @year = year
-        @city = city
-        @mon = Date::MONTHNAMES[mon.to_i][0..2]    
-        Dir.chdir("../weatherman_data/#{@city}_weather")
-      end
-    def get_data
-    index = 1
-    h_temp = 0
-    l_temp = 0
-    Dir.glob("*.txt").each do |file|
-      if file.match(/^.*_#{@year}_#{@mon}\.txt$/)
-        f = File.open(file, "r")
-        puts ""
-        puts "\e[33m" + "*" * 30 + "  #{@mon} #{@year} Temperature Chart  " + "*" * 30 + "\e[0m"
-        puts ""
-        f.each do |line|
-          arr = line.split(",")
-          if arr.size > 1 && arr[1].to_i.to_s == arr[1]
-            h_temp,l_temp = arr[1].to_i,arr[3].to_i
-             
-            print "%02d  " % index
-            print "\e[34m+\e[0m" * l_temp
-            print "\e[31m+\e[0m" * h_temp
-            puts "  #{h_temp}\u00B0C - #{l_temp}\u00B0C"
-            
-            index=index+1
-          end
-        end
-      end
-    end
-  
-  end
+	def initialize(year, city,mon)
+		@year = year
+		@city = city
+		@mon = Date::MONTHNAMES[mon.to_i][0..2]    
+		Dir.chdir("../weatherman_data/#{@city}_weather")
+	end
+	def get_data
+		index = 1
+		h_temp = 0
+		l_temp = 0
+		Dir.glob("*.txt").each do |file|
+			if file.match(/^.*_#{@year}_#{@mon}\.txt$/)
+				f = File.open(file, "r")
+				puts ""
+				puts "\e[33m" + "*" * 30 + "  #{@mon} #{@year} Temperature Chart  " + "*" * 30 + "\e[0m"
+				puts ""
+				f.each do |line|
+					arr = line.split(",")
+					if arr.size > 1 && arr[1].to_i.to_s == arr[1]
+						h_temp,l_temp = arr[1].to_i,arr[3].to_i
+												print "%02d  " % index
+						if l_temp > 0
+							print "\e[34m+\e[0m" * l_temp
+						end
+						if h_temp > 0
+							print "\e[31m+\e[0m" * h_temp
+						end
+						puts "  #{h_temp}\u00B0C - #{l_temp}\u00B0C"
+												index=index+1
+					end
+				end
+			end
+		end
+			end
 end

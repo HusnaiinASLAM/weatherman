@@ -17,7 +17,8 @@ class Index
       raise Exception, "Invalid flag" if !flags.include?(flag)
       raise Exception, "City data doesn't exist" if !cities.include?(city)
       raise Exception, "Data of that year is not present" if !years.include?(year.to_i)
-      if flag == "-cc"
+      if flag == "-cc" || flag == "-c" || flag == "-a"
+        raise Exception, "Please give the value of month. (year/month)" if year.split("/").size < 2
         raise Exception, "Invalid entry for month" if ARGV[1].split("/")[1].to_i > 12 || ARGV[1].split("/")[1].to_i < 1
       end
       
