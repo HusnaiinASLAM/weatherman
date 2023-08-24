@@ -1,5 +1,5 @@
 require_relative "directories.rb"
-class Flagcc < Directories
+class Flagcc 
 	def initialize(year, city,mon)
 		@year = year
 		@city = city
